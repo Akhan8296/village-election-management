@@ -1,6 +1,6 @@
 from database import get_connection
 
-def get_voters(search_name="",house_no="",gender="All",min_age=0,max_age=120,limit=100):
+def get_voters(search_name="",house_no="", polling_station = "" ,gender="All",min_age=0,max_age=120,limit=500):
     # Create database connection
     conn = get_connection()
     cursor = conn.cursor()
@@ -27,6 +27,12 @@ def get_voters(search_name="",house_no="",gender="All",min_age=0,max_age=120,lim
             AND HOUSE_NO = :house_no
         """
         params["house_no"] = house_no
+
+    if polling_station:
+        sql += """
+            AND UPPER(SECTION) LIKE UPPER(:polling_station)
+        """
+        params["polling_station"] = f"%{polling_station}%"
 
     # Add gender condition if not "All"
     if gender != "All":
