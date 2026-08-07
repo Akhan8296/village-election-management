@@ -6,7 +6,7 @@ from services.voter_service import get_voters
 # Page Configuration
 # -----------------------------
 st.set_page_config(
-    page_title="Village Election Management",
+    page_title="Village Demographic Dashboard",
     page_icon="🗳️",
     layout="wide"
 )
@@ -45,16 +45,34 @@ def clear_filters():
 # Title
 # -----------------------------
 st.markdown("""
-<h1 style="
+<div style="
     text-align:center;
-    background: linear-gradient(to right,#FF9933,#FFFFFF,#138808);
-    -webkit-background-clip:text;
-    -webkit-text-fill-color:transparent;
-    font-weight:bold;
-    font-size:4rem;
+    padding:20px;
+    border-radius:15px;
+    background:linear-gradient(135deg,#fff7e6,#ffffff,#e8f5e9);
+    box-shadow:0 4px 12px rgba(0,0,0,0.2);
+    margin-bottom:20px;
 ">
-Village Election Management
-</h1>
+    <h1 style="
+        margin:0;
+        font-size:52px;
+        font-weight:800;
+        background:linear-gradient(90deg,#FF9933,#138808);
+        -webkit-background-clip:text;
+        -webkit-text-fill-color:transparent;
+        letter-spacing:2px;
+    ">
+        🗳️ Village Demographic Dashboard
+    </h1>
+    <p style="
+        color:#555;
+        font-size:18px;
+        margin-top:8px;
+        font-style:italic;
+    ">
+        Village Insights • Population • Analytics
+    </p>
+</div>
 """, unsafe_allow_html=True)
 
 # -----------------------------
