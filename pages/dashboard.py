@@ -1,25 +1,9 @@
 import streamlit as st
-from services.dashboard_service import get_gender_data
-from services.dashboard_service import get_age_data
-from charts.charts_all import create_gender_chart
-from charts.charts_all import create_age_chart
-from services.dashboard_service import get_house_data
-from charts.charts_all import create_house_chart
-from services.dashboard_service import get_gender_age_data
-from charts.charts_all import create_gender_age_chart
+from services.dashboard_service import (get_gender_data, get_age_data, get_house_data, get_gender_age_data)
+from charts.charts_all import (create_gender_chart, create_age_chart, create_house_chart, create_gender_age_chart)
 
 def show_dashboard():
     st.title("Election Dashboard")
-    st.markdown("""
-    <style>
-    .chart-box {
-        border: 2px solid black;
-        border-radius: 8px;
-        padding: 2px;
-        margin-bottom: 5px;
-    }
-    </style>
-    """, unsafe_allow_html=True)
 
     # Get data
     df_gender = get_gender_data()
@@ -29,7 +13,7 @@ def show_dashboard():
 
     # Create charts
     gender_fig = create_gender_chart(df_gender)
-    gender_fig.update_layout(height=250)
+    gender_fig.update_layout(height=250, margin=dict(l=30, r=20, t=50, b=30))
     age_fig = create_age_chart(df_age)
     age_fig.update_layout(height=250 ,margin=dict(l=30, r=20, t=50, b=30))
 
