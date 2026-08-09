@@ -26,12 +26,12 @@ def show_dashboard():
 
     # Create charts
     gender_fig = create_gender_chart(df_gender)
-    gender_fig.update_layout(height=350)
+    gender_fig.update_layout(height=250)
     age_fig = create_age_chart(df_age)
-    age_fig.update_layout(height=350)
+    age_fig.update_layout(height=250)
 
     house_fig = create_house_chart(df_house)
-    house_fig.update_layout(height=350)
+    house_fig.update_layout(height=250)
 
     # Display side by side
     col1, col2 = st.columns(2)
