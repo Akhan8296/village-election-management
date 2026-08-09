@@ -18,8 +18,8 @@ for key, value in defaults.items():
 # Navigation
 pages = {
     "": [
-        st.Page(show_voters, title="Voters", icon="👥"),
-        st.Page(show_dashboard, title="Dashboard", icon="📊")
+        st.Page(show_dashboard, title="Dashboard", icon="📊"),
+        st.Page(show_voters, title="Search Voters", icon="👥")
     ]
 }
 
