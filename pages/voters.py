@@ -32,7 +32,8 @@ def show_voters():
                 "Voter Name",
                 placeholder="Voter Name",
                 key="search_name",
-                label_visibility="collapsed"
+                label_visibility="collapsed",
+                use_container_width=True
             )
 
     with col2:
@@ -40,8 +41,9 @@ def show_voters():
             st.selectbox(
                 "Gender",
                 ["All", "Male", "Female"],
-            key="gender",
-            label_visibility="collapsed"
+                key="gender",
+                label_visibility="collapsed",
+                use_container_width=True
         )
 
     with col3:
@@ -50,7 +52,8 @@ def show_voters():
                 "House No",
                 placeholder="House No",
                 key="house_no",
-                label_visibility="collapsed"
+                label_visibility="collapsed",
+                use_container_width=True
             )
 
     with col4:
@@ -59,7 +62,8 @@ def show_voters():
                 "Polling Station",
                 placeholder="Polling Station",
                 key="polling_station",
-                label_visibility="collapsed"
+                label_visibility="collapsed",
+                use_container_width=True
             )
 
     with col5:
@@ -70,7 +74,8 @@ def show_voters():
                 max_value=120,
                 value=18,
                 key="min_age",
-                label_visibility="collapsed"
+                label_visibility="collapsed",
+                use_container_width=True
             )
 
     with col6:
@@ -81,7 +86,8 @@ def show_voters():
                 max_value=120,
                 value=120,
                 key="max_age",
-                label_visibility="collapsed"
+                label_visibility="collapsed",
+                use_container_width=True
             )
 
     # Buttons
