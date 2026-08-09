@@ -9,14 +9,15 @@ from charts.charts_all import create_house_chart
 def show_dashboard():
     st.title("Election Dashboard")
     st.markdown("""
-        <style>
-        [data-testid="column"] {
-            border: 2px solid black;
-            padding: 10px;
-            border-radius: 8px;
-        }
-        </style>
-        """, unsafe_allow_html=True)
+    <style>
+    .chart-box {
+        border: 2px solid black;
+        border-radius: 8px;
+        padding: 10px;
+        margin-bottom: 15px;
+    }
+    </style>
+    """, unsafe_allow_html=True)
 
     # Get data
     df_gender = get_gender_data()
@@ -36,9 +37,16 @@ def show_dashboard():
     col1, col2 = st.columns(2)
 
     with col1:
+        st.markdown('<div class="chart-box">', unsafe_allow_html=True)
         st.plotly_chart(gender_fig, use_container_width=True)
+        st.markdown('</div>', unsafe_allow_html=True)
+
     with col2:
-        st.plotly_chart(age_fig,use_container_width=True)
-        
-    st.plotly_chart(house_fig,use_container_width=True)
+        st.markdown('<div class="chart-box">', unsafe_allow_html=True)
+        st.plotly_chart(age_fig, use_container_width=True)
+        st.markdown('</div>', unsafe_allow_html=True)
+
+    st.markdown('<div class="chart-box">', unsafe_allow_html=True)
+    st.plotly_chart(house_fig, use_container_width=True)
+    st.markdown('</div>', unsafe_allow_html=True)
     
