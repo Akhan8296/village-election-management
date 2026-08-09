@@ -80,3 +80,21 @@ def get_gender_age_data():
         return df
     finally:
         connection.close()
+
+def get_kpi_data():
+    query = """
+        SELECT
+            COUNT(*) AS TOTAL_VOTERS,
+            SUM(CASE WHEN GENDER = 'Male' THEN 1 ELSE 0 END) AS MALE_VOTERS,
+            SUM(CASE WHEN GENDER = 'Female' THEN 1 ELSE 0 END) AS FEMALE_VOTERS,
+            COUNT(DISTINCT HOUSE_NO) AS TOTAL_HOUSES
+        FROM VOTERS
+    """
+
+    connection = get_connection()
+
+    try:
+        df = pd.read_sql(query, connection)
+        return df.iloc[0]
+    finally:
+        connection.close()
