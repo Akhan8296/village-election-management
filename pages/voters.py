@@ -24,25 +24,59 @@ def show_voters():
     """, unsafe_allow_html=True)
 
     # Search Filters
-    col1, col2 ,col3,col4,col5,col6 = st.columns(6)
+    col1, col2, col3, col4, col5, col6 = st.columns(6)
 
     with col1:
-        st.text_input("", placeholder="Voter Name", key="search_name", label_visibility="collapsed")
+        st.text_input(
+            "Voter Name",
+            placeholder="Voter Name",
+            key="search_name",
+            label_visibility="collapsed"
+        )
 
     with col2:
-        st.selectbox("Gender", ["All", "Male", "Female"], key="gender")
+        st.selectbox(
+            "Gender",
+            ["All", "Male", "Female"],
+            key="gender",
+            label_visibility="collapsed"
+        )
 
     with col3:
-        st.text_input("", placeholder="House No", key="house_no", label_visibility="collapsed")
+        st.text_input(
+            "House No",
+            placeholder="House No",
+            key="house_no",
+            label_visibility="collapsed"
+        )
 
     with col4:
-        st.text_input("", placeholder="Polling Station", key="polling_station", label_visibility="collapsed")
+        st.text_input(
+            "Polling Station",
+            placeholder="Polling Station",
+            key="polling_station",
+            label_visibility="collapsed"
+        )
 
     with col5:
-        st.number_input("Min Age", min_value=18, max_value=120, key="min_age")
+        st.number_input(
+            "Min Age",
+            min_value=18,
+            max_value=120,
+            value=18,
+            key="min_age",
+            label_visibility="collapsed"
+        )
 
     with col6:
-        st.number_input("Max Age", min_value=18, max_value=120, key="max_age")
+        st.number_input(
+            "Max Age",
+            min_value=18,
+            max_value=120,
+            value=120,
+            key="max_age",
+            label_visibility="collapsed"
+        )
 
     # Buttons
     left, search_col, reset_col, right = st.columns([3, 1, 1, 3])
