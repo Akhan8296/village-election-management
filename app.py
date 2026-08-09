@@ -34,6 +34,7 @@ pages = {
         st.Page(show_dashboard, title="Dashboard", icon="📊"),
         st.Page(show_voters, title="Search Voters", icon="🔍"),
         st.Page("pages/update_voter.py", title="Update Voter", icon="✏️")
+        st.Page("pages/Settings.py", title="Settings", icon="⚙git️")
     ]
 }
 
