@@ -27,15 +27,20 @@ def show_voters():
     col1, col2 ,col3,col4,col5,col6 = st.columns(6)
 
     with col1:
-        st.text_input("Voter Name", key="search_name")
+        st.text_input("", placeholder="Voter Name", key="search_name", label_visibility="collapsed")
+
     with col2:
         st.selectbox("Gender", ["All", "Male", "Female"], key="gender")
+
     with col3:
-        st.text_input("House No", key="house_no")
+        st.text_input("", placeholder="House No", key="house_no", label_visibility="collapsed")
+
     with col4:
-        st.text_input("Polling Station", key="polling_station")        
+        st.text_input("", placeholder="Polling Station", key="polling_station", label_visibility="collapsed")
+
     with col5:
         st.number_input("Min Age", min_value=18, max_value=120, key="min_age")
+
     with col6:
         st.number_input("Max Age", min_value=18, max_value=120, key="max_age")
 
