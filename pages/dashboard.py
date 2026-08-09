@@ -9,7 +9,13 @@ from charts.charts_all import create_house_chart
 def show_dashboard():
     st.title("Election Dashboard")
     st.markdown("""
-        <style> [data-testid="column"] { border: 1px solid #ddd; padding: 10px; border-radius: 8px;} </style>
+        <style>
+        [data-testid="column"] {
+            border: 2px solid black;
+            padding: 10px;
+            border-radius: 8px;
+        }
+        </style>
         """, unsafe_allow_html=True)
 
     # Get data
