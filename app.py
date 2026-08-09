@@ -40,25 +40,3 @@ pages = {
 
 pg = st.navigation(pages)
 pg.run()
-
-st.sidebar.markdown(
-    """
-    <div style="
-        position: fixed;
-        bottom: 0;
-        left: 0;
-        width: 244px;
-        padding: 12px 15px;
-        background-color: white;
-        border-top: 1px solid #ddd;
-    ">
-        <div style="font-size: 13px; color: #555;">
-            Logged in user
-        </div>
-        <div style="font-size: 15px; margin-top: 6px;">
-            👤 &nbsp; Admin
-        </div>
-    </div>
-    """,
-    unsafe_allow_html=True
-)
