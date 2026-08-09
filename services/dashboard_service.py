@@ -87,10 +87,10 @@ def get_kpi_data():
             COUNT(*) AS TOTAL_VOTERS,
             SUM(CASE WHEN GENDER = 'Male' THEN 1 ELSE 0 END) AS MALE_VOTERS,
             SUM(CASE WHEN GENDER = 'Female' THEN 1 ELSE 0 END) AS FEMALE_VOTERS,
-            COUNT(DISTINCT HOUSE_NO) AS TOTAL_HOUSES
+            COUNT(DISTINCT HOUSE_NO) AS TOTAL_HOUSES,
+            ROUND(AVG(AGE), 1) AS AVG_AGE
         FROM VOTERS
     """
-
     connection = get_connection()
 
     try:
