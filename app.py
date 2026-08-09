@@ -4,6 +4,17 @@ from pages.dashboard import show_dashboard
 
 # Page Configuration
 st.set_page_config(page_title="Village Demographic Dashboard",page_icon="🗳️",layout="wide")
+st.sidebar.markdown(
+    """
+    <div style="text-align:center; padding:10px 0 15px 0;">
+        <h2 style="margin:0;">🗳️ Election Management</h2>
+        <p style="margin:4px 0 0 0; font-size:13px;">
+            Village Election System
+        </p>
+    </div>
+    """,
+    unsafe_allow_html=True
+)
 
 # Session State
 defaults = {
@@ -19,7 +30,8 @@ for key, value in defaults.items():
 pages = {
     "": [
         st.Page(show_dashboard, title="Dashboard", icon="📊"),
-        st.Page(show_voters, title="Search Voters", icon="👥")
+        st.Page(show_voters, title="Search Voters", icon="🔍"),
+        st.Page("pages/update_voter.py", title="Update Voter", icon="✏️")
     ]
 }
 
