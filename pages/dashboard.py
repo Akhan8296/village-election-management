@@ -37,16 +37,13 @@ def show_dashboard():
     col1, col2 = st.columns(2)
 
     with col1:
-        st.markdown('<div class="chart-box">', unsafe_allow_html=True)
-        st.plotly_chart(gender_fig, use_container_width=True)
-        st.markdown('</div>', unsafe_allow_html=True)
+        with st.container(border=True):
+            st.plotly_chart(gender_fig, use_container_width=True)
 
     with col2:
-        st.markdown('<div class="chart-box">', unsafe_allow_html=True)
-        st.plotly_chart(age_fig, use_container_width=True)
-        st.markdown('</div>', unsafe_allow_html=True)
+        with st.container(border=True):
+            st.plotly_chart(age_fig, use_container_width=True)
 
-    st.markdown('<div class="chart-box">', unsafe_allow_html=True)
-    st.plotly_chart(house_fig, use_container_width=True)
-    st.markdown('</div>', unsafe_allow_html=True)
+    with st.container(border=True):
+        st.plotly_chart(house_fig, use_container_width=True)
     
