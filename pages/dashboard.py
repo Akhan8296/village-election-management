@@ -19,7 +19,7 @@ def show_dashboard():
 
     # Create charts
     gender_fig = create_gender_chart(df_gender)
-    gender_fig.update_layout(height=150)
+    gender_fig.update_layout(height=350)
     age_fig = create_age_chart(df_age)
     age_fig.update_layout(height=350)
 

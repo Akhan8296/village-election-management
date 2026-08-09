@@ -40,7 +40,12 @@ def get_age_data():
         connection.close()
 
 def get_house_data():
-    query = """ SELECT HOUSE_NO, COUNT(*) AS VOTER_COUNT FROM VOTERS GROUP BY HOUSE_NO ORDER BY HOUSE_NO """
+    query = """ SELECT
+    TO_NUMBER(HOUSE_NO) AS HOUSE_NO,
+    COUNT(*) AS VOTER_COUNT
+    FROM VOTERS
+    GROUP BY TO_NUMBER(HOUSE_NO)
+    ORDER BY TO_NUMBER(HOUSE_NO) """
     connection = get_connection()
     try:
         df = pd.read_sql(query, connection)
