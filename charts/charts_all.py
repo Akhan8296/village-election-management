@@ -12,3 +12,9 @@ def create_age_chart(df):
 def create_house_chart(df):
     fig = px.line(df,x="HOUSE_NO",y="VOTER_COUNT",title="Voters by House Number",markers=True)
     return fig
+
+def create_gender_age_chart(df):
+    fig = px.bar(df, x="AGE_GROUP", y="VOTER_COUNT", color="GENDER",
+        barmode="group", title="Gender Distribution by Age Group", text="VOTER_COUNT"
+    )
+    return fig
