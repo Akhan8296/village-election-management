@@ -13,15 +13,15 @@ def show_dashboard():
 
     # Create charts
     gender_fig = create_gender_chart(df_gender)
-    gender_fig.update_layout(height=250 ,margin=dict(l=10, r=10, t=50, b=30))
+    gender_fig.update_layout(height=250 ,margin=dict(l=0, r=0, t=50, b=30))
     age_fig = create_age_chart(df_age)
-    age_fig.update_layout(height=250 ,margin=dict(l=10, r=10, t=50, b=30))
+    age_fig.update_layout(height=250 ,margin=dict(l=0, r=0, t=50, b=30))
 
     house_fig = create_house_chart(df_house)
-    house_fig.update_layout(height=300 ,margin=dict(l=10, r=10, t=50, b=30))
+    house_fig.update_layout(height=300 ,margin=dict(l=0, r=0, t=50, b=30))
 
     gender_age_fig = create_gender_age_chart(df_gender_age)
-    gender_age_fig.update_layout(xaxis_title="Age Group", yaxis_title="Number of Voters", height=250 ,margin=dict(l=10, r=10, t=50, b=30))
+    gender_age_fig.update_layout(xaxis_title="Age Group", yaxis_title="Number of Voters", height=250 ,margin=dict(l=0, r=0, t=50, b=30))
 
     # Display side by side
     col1, col2 ,col3= st.columns(3)
