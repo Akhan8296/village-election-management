@@ -3,7 +3,6 @@ from services.dashboard_service import (get_gender_data, get_age_data, get_house
 from charts.charts_all import (create_gender_chart, create_age_chart, create_house_chart, create_gender_age_chart)
 
 def show_dashboard():
-    st.title("Election Dashboard")
     st.markdown("""
     <h2 style="
         font-size: 28px;

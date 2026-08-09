@@ -19,23 +19,21 @@ def show_voters():
         margin-bottom: 10px;
         font-weight: 600;
     ">
-        🗳️ Village Voter Management
+        Search Voters
     </h2>
     """, unsafe_allow_html=True)
 
     # Search Filters
-    col1, col2 = st.columns(2)
+    col1, col2 ,col3,col4,col5,col6 = st.columns(6)
 
     with col1:
         st.text_input("Voter Name", key="search_name")
     with col2:
         st.selectbox("Gender", ["All", "Male", "Female"], key="gender")
-    col3, col4 = st.columns(2)
     with col3:
         st.text_input("House No", key="house_no")
     with col4:
         st.text_input("Polling Station", key="polling_station")        
-    col5, col6 = st.columns(2)
     with col5:
         st.number_input("Min Age", min_value=18, max_value=120, key="min_age")
     with col6:
