@@ -4,17 +4,19 @@ from pages.dashboard import show_dashboard
 
 # Page Configuration
 st.set_page_config(page_title="Village Demographic Dashboard",page_icon="🗳️",layout="wide")
-st.sidebar.markdown(
-    """
-    <div style="text-align:center; padding:10px 0 15px 0;">
-        <h2 style="margin:0;">🗳️ Election Management</h2>
-        <p style="margin:4px 0 0 0; font-size:13px;">
-            Village Election System
-        </p>
-    </div>
-    """,
-    unsafe_allow_html=True
-)
+
+st.markdown("""
+<style>
+[data-testid="stSidebarNav"]::before {
+    content: "Village Demographic";
+    display: block;
+    font-size: 20px;
+    font-weight: 600;
+    text-align: center;
+    padding: 10px 5px 15px 5px;
+}
+</style>
+""", unsafe_allow_html=True)
 
 # Session State
 defaults = {

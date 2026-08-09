@@ -10,7 +10,7 @@ def show_dashboard():
         margin-bottom: 10px;
         font-weight: 600;
     ">
-        Election Dashboard
+        Data Dashboard
     </h2>
     """, unsafe_allow_html=True)
 
