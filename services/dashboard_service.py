@@ -40,19 +40,10 @@ def get_age_data():
         connection.close()
 
 def get_house_data():
-    query = """
-    SELECT
-        TO_NUMBER(HOUSE_NO) AS HOUSE_NO,
-        COUNT(*) AS VOTER_COUNT
-    FROM VOTERS
-    GROUP BY TO_NUMBER(HOUSE_NO)
-    ORDER BY TO_NUMBER(HOUSE_NO)
-"""
+    query = """ SELECT HOUSE_NO, COUNT(*) AS VOTER_COUNT FROM VOTERS GROUP BY HOUSE_NO ORDER BY HOUSE_NO """
     connection = get_connection()
     try:
         df = pd.read_sql(query, connection)
-        df["HOUSE_NO"] = pd.to_numeric(df["HOUSE_NO"],errors="coerce")
-        df = df.sort_values("HOUSE_NO")
         return df
     finally:
         connection.close()
