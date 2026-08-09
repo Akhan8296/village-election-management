@@ -98,7 +98,7 @@ def show_voters():
             min_age=st.session_state.min_age,
             max_age=st.session_state.max_age
         )
-        columns = ["EPIC NO", "Booth", "Serial", "Polling Station", "Name", "Relation", "Relative Name", "House", "Age", "Gender"]
+        columns = ["EPIC NO", "Booth", "Serial", "Polling Station", "Name", "Relation", "Relative Name", "Age", "Gender", "House"]
 
         df = pd.DataFrame(rows, columns=columns)
 

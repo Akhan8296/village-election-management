@@ -8,7 +8,7 @@ st.set_page_config(page_title="Village Demographic Dashboard",page_icon="🗳️
 st.markdown("""
 <style>
 [data-testid="stSidebarNav"]::before {
-    content: "Village Demographic";
+    content: "🗳️Village Demographic";
     display: block;
     font-size: 20px;
     font-weight: 600;
