@@ -22,18 +22,18 @@ def show_dashboard():
     kpi = get_kpi_data()
     
     kpi1, kpi2, kpi3, kpi4 = st.columns(4)
-
     with kpi1:
-        st.metric("Total Voters", int(kpi["TOTAL_VOTERS"]))
-
+        with st.container(border=True):
+            st.metric("👥 Total Voters", int(kpi["TOTAL_VOTERS"]))
     with kpi2:
-        st.metric("Male Voters", int(kpi["MALE_VOTERS"]))
-
+        with st.container(border=True):
+            st.metric("♂️ Male Voters", int(kpi["MALE_VOTERS"]))
     with kpi3:
-        st.metric("Female Voters", int(kpi["FEMALE_VOTERS"]))
-
+        with st.container(border=True):
+            st.metric("♀️ Female Voters", int(kpi["FEMALE_VOTERS"]))
     with kpi4:
-        st.metric("Total Houses", int(kpi["TOTAL_HOUSES"]))
+        with st.container(border=True):
+            st.metric("🏠 Total Houses", int(kpi["TOTAL_HOUSES"]))
     # Create charts
     gender_fig = create_gender_chart(df_gender)
     gender_fig.update_layout(height=250 ,margin=dict(l=0, r=0, t=50, b=30))
