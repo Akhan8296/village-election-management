@@ -12,7 +12,16 @@ def clear_filters():
     st.session_state.search_clicked = False
 
 def show_voters():
-    st.title("🗳️ Village Voter Management")
+    st.markdown("""
+    <h2 style="
+        font-size: 28px;
+        margin-top: -25px;
+        margin-bottom: 10px;
+        font-weight: 600;
+    ">
+        🗳️ Village Voter Management
+    </h2>
+    """, unsafe_allow_html=True)
 
     # Search Filters
     col1, col2 = st.columns(2)

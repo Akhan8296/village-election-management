@@ -4,6 +4,16 @@ from charts.charts_all import (create_gender_chart, create_age_chart, create_hou
 
 def show_dashboard():
     st.title("Election Dashboard")
+    st.markdown("""
+    <h2 style="
+        font-size: 28px;
+        margin-top: -25px;
+        margin-bottom: 10px;
+        font-weight: 600;
+    ">
+        Election Dashboard
+    </h2>
+    """, unsafe_allow_html=True)
 
     # Get data
     df_gender = get_gender_data()
