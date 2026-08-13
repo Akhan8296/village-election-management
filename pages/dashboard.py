@@ -58,16 +58,16 @@ def show_dashboard():
 
     with col1:
         with st.container(border=True):
-            st.plotly_chart(gender_fig, use_container_width=True)
+            st.plotly_chart(gender_fig, width='stretch')
 
     with col2:
         with st.container(border=True):
-            st.plotly_chart(age_fig, use_container_width=True)
+            st.plotly_chart(age_fig, width='stretch')
 
     with col3:
         with st.container(border=True):
-            st.plotly_chart(gender_age_fig, use_container_width=True)
+            st.plotly_chart(gender_age_fig, width='stretch')
 
     with st.container(border=True):
-        st.plotly_chart(house_fig, use_container_width=True)
+        st.plotly_chart(house_fig, width='stretch')
     
