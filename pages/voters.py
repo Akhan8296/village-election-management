@@ -82,11 +82,11 @@ def show_voters():
     left, search_col, reset_col, right = st.columns([3, 1, 1, 3])
 
     with search_col:
-        if st.button("Search", use_container_width=True):
+        if st.button("Search", width="stretch"):
             st.session_state.search_clicked = True
 
     with reset_col:
-        st.button("Reset", on_click=clear_filters, use_container_width=True)
+        st.button("Reset", on_click=clear_filters, width="stretch")
 
     # Search Results
     if st.session_state.search_clicked:
@@ -101,7 +101,7 @@ def show_voters():
         columns = ["EPIC NO", "Booth", "Serial", "Polling Station", "Name", "Relation", "Relative Name", "Age", "Gender", "House"]
 
         df = pd.DataFrame(rows, columns=columns)
-
+        
         st.success(f"Found {len(df)} voter(s).")
-        st.dataframe(df, hide_index=True, use_container_width=True)
+        st.dataframe(df, hide_index=True, width='stretch')
     
