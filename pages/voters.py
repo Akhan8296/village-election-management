@@ -6,7 +6,7 @@ def clear_filters():
     st.session_state.search_name = ""
     st.session_state.gender = "All"
     st.session_state.house_no = ""
-    st.session_state.polling_station = ""
+    st.session_state.part_no = ""
     st.session_state.min_age = 18
     st.session_state.max_age = 120
     st.session_state.search_clicked = False
@@ -36,7 +36,7 @@ def show_voters():
         st.text_input("House No",placeholder="House No",key="house_no",label_visibility="collapsed")
 
     with col4:
-        st.text_input("Polling Station",placeholder="Polling Station",key="polling_station",label_visibility="collapsed")
+        st.text_input("Part no",placeholder="Part no",key="part_no",label_visibility="collapsed")
 
     with col5:
         st.number_input("Min Age", min_value=18,max_value=120,value=18,key="min_age",label_visibility="collapsed")
@@ -59,13 +59,12 @@ def show_voters():
         rows = get_voters(
             search_name=st.session_state.search_name,
             house_no=st.session_state.house_no,
-            polling_station=st.session_state.polling_station,
+            part_no=st.session_state.part_no,
             gender=st.session_state.gender,
             min_age=st.session_state.min_age,
             max_age=st.session_state.max_age
         )
-        #columns = ["EPIC NO", "Booth", "Serial", "Polling Station", "Name", "Relation", "Relative Name", "Age", "Gender", "House"]
-        columns = ["Serial","EPIC NO", "Name", "Relation", "Relative Name", "Age", "Gender", "House","Booth","Polling Station"]
+        columns = ["Serial no","EPIC ID", "Name", "Relation", "Relative Name", "Age", "Gender", "House no","Section","Part no"]
         df = pd.DataFrame(rows, columns=columns)
         
         st.success(f"Found {len(df)} voter(s).")
