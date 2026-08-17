@@ -7,7 +7,7 @@ def get_voters(search_name="",house_no="", polling_station = "" ,gender="All",mi
 
     # Base SQL query
     sql = """
-        SELECT *
+        SELECT serial_no,epic_no, name, rel_type, rel_name,  age, gender,house_no, section, station_id
         FROM VOTERS
         WHERE 1 = 1
     """
