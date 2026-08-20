@@ -2,7 +2,6 @@ import streamlit as st
 import pandas as pd
 from services.voter_service import get_voters, update_voter
 
-
 def clear_update_filters():
     st.session_state.update_search_name = ""
     st.session_state.update_gender = "All"
@@ -71,7 +70,7 @@ def show_update_voter():
         st.markdown("### Select Voter")
         epic_options = df["EPIC NO"].tolist()
 
-        col1, col2 ,right = st.columns([2, 1,10])
+        col1, col2 ,right = st.columns([3, 2, 5])
         with col1:
             epic_options_with_placeholder = ["Select EPIC No"] + epic_options
 
