@@ -13,12 +13,7 @@ def clear_filters():
 
 def show_voters():
     st.markdown("""
-    <h2 style="
-        font-size: 28px;
-        margin-top: -25px;
-        margin-bottom: 10px;
-        font-weight: 600;
-    ">
+    <h2 style="font-size: 28px; margin-top: -25px; margin-bottom: 10px; font-weight: 600;">
         Search Voters
     </h2>
     """, unsafe_allow_html=True)
@@ -69,4 +64,4 @@ def show_voters():
         
         st.success(f"Found {len(df)} voter(s).")
         st.dataframe(df, hide_index=True, width='stretch')
-    
+        return df

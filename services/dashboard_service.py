@@ -72,9 +72,7 @@ def get_gender_age_data():
             GENDER
         ORDER BY AGE_GROUP, GENDER
     """
-
     connection = get_connection()
-
     try:
         df = pd.read_sql(query, connection)
         return df
@@ -92,7 +90,6 @@ def get_kpi_data():
         FROM VOTERS
     """
     connection = get_connection()
-
     try:
         df = pd.read_sql(query, connection)
         return df.iloc[0]

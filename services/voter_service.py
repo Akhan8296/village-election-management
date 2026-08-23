@@ -1,13 +1,13 @@
 from database import get_connection
 
-def get_voters(search_name="",house_no="", part_no = "" ,gender="All",min_age=0,max_age=120,limit=500):
+def get_voters(search_name="",house_no="", part_no = "" ,gender="All",min_age=0,max_age=120,limit=1000):
     # Create database connection
     conn = get_connection()
     cursor = conn.cursor()
 
     # Base SQL query
     sql = """
-        SELECT serial_no,epic_no, name, rel_type, rel_name,  age, gender,house_no, section, station_id
+        SELECT serial_no,epic_id, name, rel_type, rel_name,  age, gender,house_no, section, station_id
         FROM VOTERS
         WHERE 1 = 1
     """
@@ -71,7 +71,7 @@ def get_voters(search_name="",house_no="", part_no = "" ,gender="All",min_age=0,
 
     return rows
 
-def update_voter(epic_no,name,rel_type,rel_name,age,gender,house_no,part_no): #part_no = STATION_ID
+def update_voter(epic_id,name,rel_type,rel_name,age,gender,house_no,part_no): #part_no = STATION_ID
     conn = get_connection()
     cursor = conn.cursor()
 
@@ -85,11 +85,11 @@ def update_voter(epic_no,name,rel_type,rel_name,age,gender,house_no,part_no): #p
             GENDER = :gender,
             HOUSE_NO = :house_no,
             station_id = :part_no
-        WHERE EPIC_NO = :epic_no
+        WHERE epic_id = :epic_id
     """
 
     params = {
-        "epic_no": epic_no,
+        "epic_id": epic_id,
         "name": name,
         "rel_type": rel_type,
         "rel_name": rel_name,

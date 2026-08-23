@@ -4,12 +4,7 @@ from charts.charts_all import (create_gender_chart, create_age_chart, create_hou
 
 def show_dashboard():
     st.markdown("""
-    <h2 style="
-        font-size: 28px;
-        margin-top: -25px;
-        margin-bottom: 10px;
-        font-weight: 600;
-    ">
+    <h2 style="font-size: 28px; margin-top: -25px; margin-bottom: 10px; font-weight: 600;">
         Data Dashboard
     </h2>
     """, unsafe_allow_html=True)
@@ -20,7 +15,8 @@ def show_dashboard():
     df_house = get_house_data()
     df_gender_age = get_gender_age_data()
     kpi = get_kpi_data()
-    
+
+    # Create KPI metrics
     kpi1, kpi2, kpi3, kpi4, kpi5 = st.columns(5)
     with kpi1:
         with st.container(border=True):
@@ -41,6 +37,7 @@ def show_dashboard():
     with kpi5:
         with st.container(border=True):
             st.metric("🎂 Average Age", f'{kpi["AVG_AGE"]:.1f}')
+
     # Create charts
     gender_fig = create_gender_chart(df_gender)
     gender_fig.update_layout(height=250 ,margin=dict(l=0, r=0, t=50, b=30))
