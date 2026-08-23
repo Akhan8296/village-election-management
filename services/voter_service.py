@@ -7,7 +7,7 @@ def get_voters(search_name="",house_no="", part_no = "" ,gender="All",min_age=0,
 
     # Base SQL query
     sql = """
-        SELECT serial_no,epic_id, name, rel_type, rel_name,  age, gender,house_no, section, station_id
+        SELECT serial_no,epic_id, name, rel_type, rel_name,  age, gender,house_no, booth_name, part_no
         FROM VOTERS
         WHERE 1 = 1
     """
@@ -30,7 +30,7 @@ def get_voters(search_name="",house_no="", part_no = "" ,gender="All",min_age=0,
 
     if part_no:
         sql += """
-            AND UPPER(SECTION) LIKE UPPER(:part_no)
+            AND UPPER(booth_name) LIKE UPPER(:part_no)
         """
         params["part_no"] = f"%{part_no}%"
 
@@ -71,7 +71,7 @@ def get_voters(search_name="",house_no="", part_no = "" ,gender="All",min_age=0,
 
     return rows
 
-def update_voter(epic_id,name,rel_type,rel_name,age,gender,house_no,part_no): #part_no = STATION_ID
+def update_voter(epic_id,name,rel_type,rel_name,age,gender,house_no,part_no): 
     conn = get_connection()
     cursor = conn.cursor()
 
@@ -84,7 +84,7 @@ def update_voter(epic_id,name,rel_type,rel_name,age,gender,house_no,part_no): #p
             AGE = :age,
             GENDER = :gender,
             HOUSE_NO = :house_no,
-            station_id = :part_no
+            part_no = :part_no
         WHERE epic_id = :epic_id
     """
 

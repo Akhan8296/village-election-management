@@ -49,6 +49,8 @@ def show_voters():
     with reset_col:
         st.button("Reset", on_click=clear_filters, width="stretch")
 
+    # Always create a DataFrame
+    rows = []
     # Search Results
     if st.session_state.search_clicked:
         rows = get_voters(
@@ -59,9 +61,10 @@ def show_voters():
             min_age=st.session_state.min_age,
             max_age=st.session_state.max_age
         )
-        columns = ["Serial no","EPIC ID", "Name", "Relation", "Relative Name", "Age", "Gender", "House no","Section","Part no"]
-        df = pd.DataFrame(rows, columns=columns)
-        
+    columns = ["Serial no","EPIC ID", "Name", "Relation", "Relative Name", "Age", "Gender", "House no","booth_name","Part no"]
+    df = pd.DataFrame(rows, columns=columns)
+
+    if st.session_state.search_clicked:        
         st.success(f"Found {len(df)} voter(s).")
         st.dataframe(df, hide_index=True, width='stretch')
-        return df
+    return df

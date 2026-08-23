@@ -51,7 +51,7 @@ def show_update_voter():
             elif not rel_name.strip():
                 st.error("Relative Name cannot be empty.")      
             elif not part_no.strip():
-                st.error("Section cannot be empty.")        
+                st.error("Part no cannot be empty.")        
             else:
                 try:
                     rows_updated = update_voter(
