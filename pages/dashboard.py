@@ -1,6 +1,7 @@
 import streamlit as st
 from services.dashboard_service import (get_gender_data, get_age_data, get_house_data, get_gender_age_data, get_kpi_data)
 from charts.charts_all import (create_gender_chart, create_age_chart, create_house_chart, create_gender_age_chart)
+from services.village_service import get_villages
 
 def show_dashboard():
     st.markdown("""
@@ -8,13 +9,31 @@ def show_dashboard():
         Data Dashboard
     </h2>
     """, unsafe_allow_html=True)
+    selected_village_id = None
+
+    if st.session_state.get("role") == "POWER":
+        villages = get_villages()
+
+        village_options = {"All Villages": None}
+        village_options.update({
+            v[1]: v[0]
+            for v in villages
+            if v[2] == "Y"
+        })
+
+        selected_village_name = st.selectbox(
+            "Village",
+            list(village_options.keys())
+        )
+
+        selected_village_id = village_options[selected_village_name]
 
     # Get data
-    df_gender = get_gender_data()
-    df_age = get_age_data()
-    df_house = get_house_data()
-    df_gender_age = get_gender_age_data()
-    kpi = get_kpi_data()
+    df_gender = get_gender_data(selected_village_id)
+    df_age = get_age_data(selected_village_id)
+    df_house = get_house_data(selected_village_id)
+    df_gender_age = get_gender_age_data(selected_village_id)
+    kpi = get_kpi_data(selected_village_id)
 
     # Create KPI metrics
     kpi1, kpi2, kpi3, kpi4, kpi5 = st.columns(5)

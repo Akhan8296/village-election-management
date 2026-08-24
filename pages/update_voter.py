@@ -2,14 +2,20 @@ import streamlit as st
 import pandas as pd
 from services.voter_service import get_voters, update_voter
 from pages.voters import show_voters
+from services.permission_service import has_permission
 
 def show_update_voter():
     # Admin protection
-    if st.session_state.get("role") != "ADMIN":
-        st.error("🚫 Administrator access required.")
+# Permission protection
+    if not st.session_state.get("is_logged_in"):
+        st.error("🔐 Login required.")
         st.stop()
 
-    df = show_voters()
+    if not has_permission("EDIT_VOTER"):
+        st.error("🚫 You don't have permission to edit voters.")
+        st.stop()
+
+    df = show_voters(enable_concern=False)
 
     st.markdown("### Select Voter")
     epic_options = df["EPIC ID"].tolist()
