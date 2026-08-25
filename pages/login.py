@@ -6,7 +6,7 @@ from services.concern_service import get_notification_summary
 from services.auth_service import authenticate_user
 
 def show_login():
-    col1, col2, col3 = st.columns([16, 1, 1])
+    col1, col2, col3 = st.columns([10, 1, 1])
 
     with col2:
         role = st.session_state.get("role")

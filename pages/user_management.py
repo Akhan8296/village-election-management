@@ -2,18 +2,38 @@ import streamlit as st
 from datetime import datetime, time
 from services.permission_service import has_permission
 from services.village_service import get_villages
-from services.auth_service import create_user, get_users_by_village, get_all_users, get_user_permissions, update_user_access
+from services.auth_service import (
+    create_user,
+    get_users_by_village,
+    get_all_users,
+    get_user_permissions,
+    update_user_access
+)
+
+ALL_PERMISSIONS = [
+    "VIEW_VOTERS",
+    "SEARCH_VOTERS",
+    "ADD_VOTER",
+    "EDIT_VOTER",
+    "DELETE_VOTER",
+    "IMPORT_DATA",
+    "EXPORT_DATA",
+    "VIEW_REPORTS",
+    "MANAGE_USERS",
+    "VIEW_AUDIT_LOG"
+]
 
 def show_user_management():
     if not has_permission("MANAGE_USERS"):
         st.error("🚫 You don't have permission to manage users.")
         st.stop()
 
-    if st.session_state.get("role") == "POWER":
+    current_role = st.session_state.get("role")
+
+    if current_role == "POWER":
         users = get_all_users()
     else:
         users = get_users_by_village(st.session_state["village_id"])
-    role = st.session_state.get("role")
 
     # Existing Users
     st.subheader("Existing Users")
@@ -33,7 +53,7 @@ def show_user_management():
 
         st.dataframe(user_data, hide_index=True, width="stretch")
     else:
-        st.info("No Team or Guest users found.")
+        st.info("No users found.")
 
     st.divider()
 
@@ -43,20 +63,30 @@ def show_user_management():
     full_name = st.text_input("Full Name")
     username = st.text_input("Username")
     password = st.text_input("Password", type="password")
-    current_role = st.session_state.get("role")
 
     if current_role == "POWER":
         villages = [v for v in get_villages() if v[2] == "Y"]
         village_map = {v[1]: v[0] for v in villages}
 
-        selected_village = st.selectbox("Village", list(village_map.keys()))
+        selected_village = st.selectbox(
+            "Village",
+            list(village_map.keys())
+        )
+
         target_village_id = village_map[selected_village]
 
-        role = st.selectbox("Role", ["ADMIN", "TEAM", "GUEST"])
+        new_user_role = st.selectbox(
+            "Role",
+            ["ADMIN", "TEAM", "GUEST"]
+        )
 
     else:
         target_village_id = st.session_state["village_id"]
-        role = st.selectbox("Role", ["TEAM", "GUEST"])
+
+        new_user_role = st.selectbox(
+            "Role",
+            ["TEAM", "GUEST"]
+        )
 
     col1, col2 = st.columns(2)
 
@@ -65,18 +95,17 @@ def show_user_management():
 
     with col2:
         no_expiry = st.checkbox("No Expiry", value=True)
-        access_end = None if no_expiry else st.date_input("Access End Date")
+
+        access_end = (
+            None
+            if no_expiry
+            else st.date_input("Access End Date")
+        )
 
     permissions = st.multiselect(
         "Permissions",
-        [
-            "EDIT_VOTER",
-            "ADD_VOTER",
-            "DELETE_VOTER",
-            "IMPORT_DATA",
-            "EXPORT_DATA",
-            "VIEW_REPORTS"
-        ]
+        ALL_PERMISSIONS,
+        key="create_permissions"
     )
 
     if st.button("Create User", type="primary"):
@@ -84,22 +113,33 @@ def show_user_management():
             st.error("Full name, username and password are required.")
             return
 
-        start_datetime = datetime.combine(access_start, time.min)
-        end_datetime = None if no_expiry else datetime.combine(access_end, time.max)
+        start_datetime = datetime.combine(
+            access_start,
+            time.min
+        )
+
+        end_datetime = (
+            None
+            if no_expiry
+            else datetime.combine(access_end, time.max)
+        )
 
         try:
             create_user(
                 username=username.strip(),
                 password=password,
                 full_name=full_name.strip(),
-                role=role,
+                role=new_user_role,
                 village_id=target_village_id,
                 permissions=permissions,
                 access_start=start_datetime,
                 access_end=end_datetime
             )
 
-            st.success(f"✅ User '{username}' created successfully.")
+            st.success(
+                f"✅ User '{username}' created successfully."
+            )
+
             st.rerun()
 
         except Exception as e:
@@ -111,7 +151,10 @@ def show_user_management():
     st.subheader("Edit User")
 
     if users:
-        user_map = {f"{u[1]} ({u[2]})": u for u in users}
+        user_map = {
+            f"{u[1]} ({u[2]})": u
+            for u in users
+        }
 
         selected_label = st.selectbox(
             "Select User",
@@ -124,7 +167,9 @@ def show_user_management():
         current_status = selected_user[4]
         current_end = selected_user[6]
 
-        current_permissions = get_user_permissions(selected_user_id)
+        current_permissions = get_user_permissions(
+            selected_user_id
+        )
 
         is_active = st.checkbox(
             "Active",
@@ -141,7 +186,11 @@ def show_user_management():
             new_access_end = None
 
         else:
-            default_end = current_end.date() if current_end else datetime.now().date()
+            default_end = (
+                current_end.date()
+                if current_end
+                else datetime.now().date()
+            )
 
             new_access_end_date = st.date_input(
                 "Access End Date",
@@ -154,18 +203,9 @@ def show_user_management():
                 time.max
             )
 
-        all_permissions = [
-            "EDIT_VOTER",
-            "ADD_VOTER",
-            "DELETE_VOTER",
-            "IMPORT_DATA",
-            "EXPORT_DATA",
-            "VIEW_REPORTS"
-        ]
-
         updated_permissions = st.multiselect(
             "Permissions",
-            all_permissions,
+            ALL_PERMISSIONS,
             default=current_permissions,
             key="edit_permissions"
         )
